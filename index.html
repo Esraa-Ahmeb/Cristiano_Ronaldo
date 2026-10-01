@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CR7 | رحلة كريستيانو رونالدو</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --red: #e50914;
+            --dark-red: #9d0008;
+            --black: #050505;
+            --black2: #0d0d0d;
+            --gray: #151515;
+            --light: #f5f5f5;
+            --text-gray: #aaa;
+            --gold: #d4af37;
+        }
+
+        body {
+            font-family: "Cairo", sans-serif;
+            background: var(--black);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ::selection {
+            background: var(--red);
+            color: white;
+        }
+
+        /* =========================
+           LOADER
+        ========================= */
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: .6s;
+        }
+
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-number {
+            font-family: "Oswald";
+            font-size: 100px;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1;
+            animation: pulse 1s infinite alternate;
+        }
+
+        .loader-text {
+            letter-spacing: 5px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(.9);
+                opacity: .5;
+            }
+
+            to {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 75px;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(0,0,0,.25);
+            backdrop-filter: blur(8px);
+
+            transition: .4s;
+        }
+
+        nav.scrolled {
+            background: rgba(0,0,0,.95);
+            box-shadow: 0 5px 30px rgba(0,0,0,.5);
+        }
+
+        .logo {
+            font-family: "Oswald";
+            font-size: 35px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            font-size: 14px;
+            font-weight: 700;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -8px;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: .3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        #menuBtn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.98) 10%,
+                    rgba(0,0,0,.72) 50%,
+                    rgba(0,0,0,.3)
+                ),
+                url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo.jpg")
+                center/cover no-repeat;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 20% 50%,
+                    rgba(229,9,20,.35),
+                    transparent 35%
+                );
+        }
+
+        .hero-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-small {
+            color: var(--red);
+            font-weight: 900;
+            letter-spacing: 4px;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-family: "Oswald";
+            font-size: clamp(65px, 11vw, 160px);
+            line-height: .85;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+            display: block;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            color: #ccc;
+            line-height: 2;
+            margin-top: 25px;
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 13px 28px;
+            border-radius: 3px;
+            font-weight: 800;
+            transition: .3s;
+            display: inline-block;
+        }
+
+        .btn-red {
+            background: var(--red);
+        }
+
+        .btn-red:hover {
+            background: white;
+            color: black;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid #777;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--red);
+            background: var(--red);
+            transform: translateY(-3px);
+        }
+
+        .hero-number {
+            position: absolute;
+            left: 7%;
+            bottom: -50px;
+
+            font-family: "Oswald";
+            font-size: min(40vw, 500px);
+            font-weight: 700;
+
+            color: rgba(255,255,255,.035);
+
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 100px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title span {
+            color: var(--red);
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-family: "Oswald";
+            font-size: clamp(40px, 6vw, 75px);
+            margin-top: 5px;
+        }
+
+        .section-title p {
+            max-width: 650px;
+            margin: 15px auto 0;
+            color: var(--text-gray);
+            line-height: 2;
+        }
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        .intro {
+            background: var(--black2);
+        }
+
+        .intro-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-image {
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .7s;
+        }
+
+        .intro-image:hover img {
+            transform: scale(1.08);
+        }
+
+        .intro-text h3 {
+            font-family: "Oswald";
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .intro-text h3 span {
+            color: var(--red);
+        }
+
+        .intro-text p {
+            color: #aaa;
+            line-height: 2.1;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats-section {
+            background: #080808;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(
+                145deg,
+                #161616,
+                #090909
+            );
+
+            border: 1px solid #222;
+
+            padding: 35px 20px;
+            text-align: center;
+
+            border-radius: 8px;
+
+            transition: .4s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--red);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(229,9,20,.15);
+        }
+
+        .stat-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .counter {
+            font-family: "Oswald";
+            font-size: 55px;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .stat-card p {
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline-section {
+            background: var(--black);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 50%;
+            width: 3px;
+            background: linear-gradient(
+                var(--red),
+                #333
+            );
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 30px;
+
+            width: 17px;
+            height: 17px;
+
+            border-radius: 50%;
+            background: var(--red);
+
+            box-shadow:
+                0 0 0 6px rgba(229,9,20,.15),
+                0 0 20px var(--red);
+        }
+
+        .timeline-item:nth-child(odd)
+        .timeline-dot {
+            right: -9px;
+        }
+
+        .timeline-item:nth-child(even)
+        .timeline-dot {
+            left: -9px;
+        }
+
+        .timeline-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 25px;
+            border-radius: 8px;
+            transition: .3s;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--red);
+            transform: translateY(-5px);
+        }
+
+        .timeline-year {
+            color: var(--red);
+            font-family: "Oswald";
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .timeline-card h3 {
+            font-size: 24px;
+            margin: 5px 0 10px;
+        }
+
+        .timeline-card p {
+            color: #999;
+            line-height: 1.9;
+        }
+
+        /* =========================
+           CLUBS
+        ========================= */
+
+        .clubs {
+            background: var(--black2);
+        }
+
+        .clubs-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            gap: 15px;
+        }
+
+        .club-card {
+            min-height: 260px;
+            padding: 25px 15px;
+
+            background: #111;
+            border: 1px solid #222;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            transition: .4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .club-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                transparent,
+                rgba(229,9,20,.2)
+            );
+
+            opacity: 0;
+            transition: .4s;
+        }
+
+        .club-card:hover,
+        .club-card.active {
+            transform: translateY(-10px);
+            border-color: var(--red);
+        }
+
+        .club-card:hover::before,
+        .club-card.active::before {
+            opacity: 1;
+        }
+
+        .club-year {
+            color: var(--red);
+            font-family: "Oswald";
+            font-size: 18px;
+            z-index: 1;
+        }
+
+        .club-card h3 {
+            font-family: "Oswald";
+            font-size: 25px;
+            margin: 10px 0;
+            z-index: 1;
+        }
+
+        .club-card p {
+            color: #888;
+            font-size: 13px;
+            z-index: 1;
+        }
+
+        /* =========================
+           TROPHIES
+        ========================= */
+
+        .trophies {
+            background: #070707;
+        }
+
+        .trophies-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .trophy-card {
+            background: #111;
+            padding: 35px 25px;
+            border: 1px solid #222;
+            text-align: center;
+            border-radius: 8px;
+            transition: .4s;
+        }
+
+        .trophy-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+        }
+
+        .trophy-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .trophy-card h3 {
+            color: var(--gold);
+            font-size: 30px;
+            font-family: "Oswald";
+        }
+
+        .trophy-card p {
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           QUOTE
+        ========================= */
+
+        .quote {
+            min-height: 450px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.8),
+                    rgba(0,0,0,.9)
+                ),
+                url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo_in_Real_Madrid.jpg")
+                center/cover fixed;
+        }
+
+        .quote-content {
+            max-width: 850px;
+        }
+
+        .quote-mark {
+            font-family: Georgia;
+            font-size: 100px;
+            color: var(--red);
+            height: 80px;
+        }
+
+        .quote blockquote {
+            font-size: clamp(22px, 4vw, 40px);
+            font-weight: 800;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            margin-top: 25px;
+            color: var(--red);
+            font-weight: 900;
+        }
+
+        /* =========================
+           PORTUGAL
+        ========================= */
+
+        .portugal {
+            background: var(--black2);
+        }
+
+        .portugal-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .portugal-image {
+            height: 450px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .portugal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .6s;
+        }
+
+        .portugal-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .portugal-text h3 {
+            font-family: "Oswald";
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .portugal-text h3 span {
+            color: var(--red);
+        }
+
+        .portugal-text p {
+            color: #aaa;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .national-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid var(--red);
+            color: var(--red);
+            font-weight: 800;
+        }
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
+            background: #050505;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .gallery-item.large {
+            grid-row: span 2;
+            height: 615px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .6s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(.65);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 25px;
+
+            background: linear-gradient(
+                transparent,
+                rgba(0,0,0,.8)
+            );
+
+            opacity: 0;
+            transition: .4s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h3 {
+            font-size: 20px;
+        }
+
+        /* =========================
+           FINAL
+        ========================= */
+
+        .final-section {
+            padding: 130px 20px;
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(229,9,20,.15),
+                    transparent 50%
+                );
+        }
+
+        .final-section h2 {
+            font-family: "Oswald";
+            font-size: clamp(50px,8vw,110px);
+            line-height: .9;
+        }
+
+        .final-section h2 span {
+            color: var(--red);
+        }
+
+        .final-section p {
+            color: #888;
+            margin: 25px auto;
+            max-width: 600px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 40px 7%;
+            border-top: 1px solid #222;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            color: #777;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* =========================
+           BACK TOP
+        ========================= */
+
+        #backTop {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+
+            width: 45px;
+            height: 45px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: var(--red);
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: .3s;
+
+            z-index: 900;
+        }
+
+        #backTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* =========================
+           REVEAL
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:1100px) {
+
+            .clubs-grid {
+                grid-template-columns: repeat(3,1fr);
+            }
+
+        }
+
+        @media(max-width:800px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            #menuBtn {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 75px;
+                right: 0;
+
+                width: 100%;
+
+                background: #080808;
+
+                flex-direction: column;
+                align-items: center;
+
+                gap: 0;
+
+                max-height: 0;
+                overflow: hidden;
+
+                transition: .4s;
+            }
+
+            .nav-links.active {
+                max-height: 500px;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 18px;
+            }
+
+            .hero {
+                background-position: center;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .intro-grid,
+            .portugal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .clubs-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .trophies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item.large {
+                grid-row: span 1;
+                height: 300px;
+            }
+
+            .timeline::before {
+                right: 15px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(odd) {
+                width: 100%;
+                margin: 0;
+                padding-right: 50px;
+                padding-left: 0;
+                text-align: right;
+            }
+
+            .timeline-item .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot,
+            .timeline-item:nth-child(odd) .timeline-dot {
+                right: 7px;
+                left: auto;
+            }
+
+        }
+
+        @media(max-width:550px) {
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .hero h1 {
+                font-size: 65px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .clubs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-image,
+            .portugal-image {
+                height: 350px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         LOADER
+    ========================= -->
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-number">7</div>
+            <div class="loader-text">CRISTIANO RONALDO</div>
+        </div>
+    </div>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav id="navbar">
+
+        <a href="#home" class="logo">
+            CR<span>7</span>
+        </a>
+
+        <button id="menuBtn">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#story">البداية</a></li>
+            <li><a href="#career">المسيرة</a></li>
+            <li><a href="#clubs">الأندية</a></li>
+            <li><a href="#trophies">البطولات</a></li>
+            <li><a href="#gallery">الصور</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero" id="home">
+
+        <div class="hero-number">7</div>
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                THE LEGEND
+            </div>
+
+            <h1>
+                CRISTIANO
+                <span>RONALDO</span>
+            </h1>
+
+            <p class="hero-description">
+                رحلة لاعب صنع لنفسه مكانًا خاصًا في تاريخ كرة القدم،
+                من بداياته في البرتغال إلى محطات كبيرة مع أندية ومنتخب بلاده.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#career" class="btn btn-red">
+                    اكتشف الرحلة
+                </a>
+
+                <a href="#gallery" class="btn btn-outline">
+                    شاهد الصور
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         INTRO
+    ========================= -->
+
+    <section class="intro" id="story">
+
+        <div class="section-title reveal">
+
+            <span>THE STORY</span>
+
+            <h2>البداية</h2>
+
+            <p>
+                قصة طموح واجتهاد بدأت من ماديرا وتحولت إلى مسيرة كروية عالمية.
+            </p>
+
+        </div>
+
+
+        <div class="intro-grid">
+
+            <div class="intro-image reveal">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo.jpg"
+                    alt="Cristiano Ronaldo"
+                >
+
+            </div>
+
+
+            <div class="intro-text reveal">
+
+                <h3>
+                    من ماديرا إلى
+                    <span>العالم</span>
+                </h3>
+
+                <p>
+                    بدأ كريستيانو رونالدو رحلته مع كرة القدم في البرتغال،
+                    وكان شغفه باللعبة واضحًا منذ سنواته الأولى.
+                </p>
+
+                <p>
+                    مع مرور السنوات، تطورت موهبته وأصبح واحدًا من أشهر
+                    لاعبي كرة القدم في العالم، وخاض تجارب مختلفة على أعلى
+                    مستويات اللعبة.
+                </p>
+
+                <p>
+                    هذه الصفحة تستعرض أهم المحطات في رحلته الكروية
+                    بطريقة مختصرة وبطابع CR7.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STATS
+    ========================= -->
+
+    <section class="stats-section">
+
+        <div class="section-title reveal">
+
+            <span>NUMBERS</span>
+
+            <h2>أرقام بارزة</h2>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">⚽</div>
+                <div class="counter" data-target="979">0</div>
+                <p>هدف تقريبًا عبر مسيرته حتى الآن</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">🏆</div>
+                <div class="counter" data-target="5">0</div>
+                <p>كرات ذهبية</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">🥇</div>
+                <div class="counter" data-target="5">0</div>
+                <p>ألقاب دوري أبطال أوروبا</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <div class="stat-icon">🇵🇹</div>
+                <div class="counter" data-target="1">0</div>
+                <p>لقب أمم أوروبا</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CAREER TIMELINE
+    ========================= -->
+
+    <section class="timeline-section" id="career">
+
+        <div class="section-title reveal">
+
+            <span>CAREER</span>
+
+            <h2>المسيرة الكروية</h2>
+
+            <p>
+                أهم المحطات التي صنعت رحلة CR7.
+            </p>
+
+        </div>
+
+
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <div class="timeline-year">2002</div>
+
+                    <h3>سبورتينغ لشبونة</h3>
+
+                    <p>
+                        بداية الظهور الاحترافي وانطلاق رحلة اللاعب
+                        في كرة القدم الأوروبية.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <div class="timeline-year">2003</div>
+
+                    <h3>مانشستر يونايتد</h3>
+
+                    <p>
+                        الانتقال إلى إنجلترا وبداية مرحلة مهمة
+                        في تطوير اللاعب على المستوى العالمي.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <div class="timeline-year">2009</div>
+
+                    <h3>ريال مدريد</h3>
+
+                    <p>
+                        واحدة من أشهر مراحل مسيرته، حيث أصبح جزءًا
+                        أساسيًا من تاريخ النادي.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <div class="timeline-year">2018</div>
+
+                    <h3>يوفنتوس</h3>
+
+                    <p>
+                        تجربة جديدة في الدوري الإيطالي مع نادي يوفنتوس.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <div class="timeline-year">2021</div>
+
+                    <h3>العودة إلى مانشستر</h3>
+
+                    <p>
+                        عودة اللاعب إلى مانشستر يونايتد في محطة أخرى
+                        من مسيرته الأوروبية.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-card">
+
+                    <div class="timeline-year">2023</div>
+
+                    <h3>النصر</h3>
+
+                    <p>
+                        بداية مرحلة جديدة في الدوري السعودي وتجربة
+                        مختلفة في مسيرته الاحترافية.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CLUBS
+    ========================= -->
+
+    <section class="clubs" id="clubs">
+
+        <div class="section-title reveal">
+
+            <span>CLUBS</span>
+
+            <h2>الأندية</h2>
+
+        </div>
+
+
+        <div class="clubs-grid">
+
+            <div class="club-card reveal">
+
+                <div class="club-year">2002 - 2003</div>
+
+                <h3>SPORTING</h3>
+
+                <p>بداية الاحتراف</p>
+
+            </div>
+
+
+            <div class="club-card reveal">
+
+                <div class="club-year">2003 - 2009</div>
+
+                <h3>MAN UNITED</h3>
+
+                <p>بداية الشهرة العالمية</p>
+
+            </div>
+
+
+            <div class="club-card reveal">
+
+                <div class="club-year">2009 - 2018</div>
+
+                <h3>REAL MADRID</h3>
+
+                <p>مرحلة تاريخية</p>
+
+            </div>
+
+
+            <div class="club-card reveal">
+
+                <div class="club-year">2018 - 2021</div>
+
+                <h3>JUVENTUS</h3>
+
+                <p>التجربة الإيطالية</p>
+
+            </div>
+
+
+            <div class="club-card reveal">
+
+                <div class="club-year">2023 -</div>
+
+                <h3>AL NASSR</h3>
+
+                <p>الفصل السعودي</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TROPHIES
+    ========================= -->
+
+    <section class="trophies" id="trophies">
+
+        <div class="section-title reveal">
+
+            <span>ACHIEVEMENTS</span>
+
+            <h2>البطولات والجوائز</h2>
+
+        </div>
+
+
+        <div class="trophies-grid">
+
+            <div class="trophy-card reveal">
+
+                <div class="trophy-icon">🏆</div>
+
+                <h3>5</h3>
+
+                <p>دوري أبطال أوروبا</p>
+
+            </div>
+
+
+            <div class="trophy-card reveal">
+
+                <div class="trophy-icon">🥇</div>
+
+                <h3>5</h3>
+
+                <p>كرات ذهبية</p>
+
+            </div>
+
+
+            <div class="trophy-card reveal">
+
+                <div class="trophy-icon">🇵🇹</div>
+
+                <h3>1</h3>
+
+                <p>بطولة أمم أوروبا</p>
+
+            </div>
+
+
+            <div class="trophy-card reveal">
+
+                <div class="trophy-icon">🌍</div>
+
+                <h3>4</h3>
+
+                <p>كؤوس عالم للأندية</p>
+
+            </div>
+
+
+            <div class="trophy-card reveal">
+
+                <div class="trophy-icon">⚽</div>
+
+                <h3>7</h3>
+
+                <p>ألقاب دوري محلية كبرى</p>
+
+            </div>
+
+
+            <div class="trophy-card reveal">
+
+                <div class="trophy-icon">⭐</div>
+
+                <h3>CR7</h3>
+
+                <p>علامة أصبحت عالمية</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUOTE
+    ========================= -->
+
+    <section class="quote">
+
+        <div class="quote-content reveal">
+
+            <div class="quote-mark">“</div>
+
+            <blockquote>
+                النجاح لا يأتي من الموهبة وحدها،
+                بل من العمل والاستمرار والتطوير.
+            </blockquote>
+
+            <div class="quote-author">
+                — CR7
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PORTUGAL
+    ========================= -->
+
+    <section class="portugal">
+
+        <div class="section-title reveal">
+
+            <span>PORTUGAL</span>
+
+            <h2>مع المنتخب</h2>
+
+        </div>
+
+
+        <div class="portugal-grid">
+
+            <div class="portugal-image reveal">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-154%28cropped%29.jpg"
+                    alt="Cristiano Ronaldo Portugal"
+                >
+
+            </div>
+
+
+            <div class="portugal-text reveal">
+
+                <h3>
+                    فخر
+                    <span>البرتغال</span>
+                </h3>
+
+                <p>
+                    ارتبط اسم كريستيانو رونالدو بمنتخب البرتغال
+                    لسنوات طويلة، وأصبح أحد أبرز رموز الكرة البرتغالية.
+                </p>
+
+                <p>
+                    ومن أبرز إنجازاته مع المنتخب الفوز ببطولة
+                    أمم أوروبا عام 2016.
+                </p>
+
+                <div class="national-badge">
+                    🇵🇹 PORTUGAL
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALLERY
+    ========================= -->
+
+    <section class="gallery" id="gallery">
+
+        <div class="section-title reveal">
+
+            <span>GALLERY</span>
+
+            <h2>لحظات CR7</h2>
+
+            <p>
+                مجموعة من الصور التي تعكس مراحل مختلفة من الرحلة.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item large reveal">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo.jpg"
+                    alt="Cristiano Ronaldo"
+                >
+
+                <div class="gallery-overlay">
+                    <h3>CR7</h3>
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo_in_Real_Madrid.jpg"
+                    alt="Ronaldo Real Madrid"
+                >
+
+                <div class="gallery-overlay">
+                    <h3>Real Madrid Era</h3>
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo_before_the_match_against_Al-Raed.jpg"
+                    alt="Ronaldo"
+                >
+
+                <div class="gallery-overlay">
+                    <h3>Football Legend</h3>
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-154%28cropped%29.jpg"
+                    alt="Ronaldo Portugal"
+                >
+
+                <div class="gallery-overlay">
+                    <h3>Portugal</h3>
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cristiano_Ronaldo_in_Real_Madrid.jpg"
+                    alt="Cristiano Ronaldo Real Madrid"
+                >
+
+                <div class="gallery-overlay">
+                    <h3>Legend</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL
+    ========================= -->
+
+    <section class="final-section">
+
+        <h2>
+            <span>CR7</span>
+            <br>
+            FOREVER
+        </h2>
+
+        <p>
+            مسيرة طويلة، أرقام كثيرة، ولحظات لا تُنسى.
+            هذه كانت رحلة كريستيانو رونالدو في عالم كرة القدم.
+        </p>
+
+        <a href="#home" class="btn btn-red">
+            ↑ العودة للأعلى
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div>
+            <strong>CR7</strong> Fan Website
+        </div>
+
+        <div>
+            Made with ⚽ & ❤️
+        </div>
+
+    </footer>
+
+
+    <button id="backTop">↑</button>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* LOADER */
+
+        window.addEventListener("load", function() {
+
+            const loader = document.getElementById("loader");
+
+            setTimeout(function() {
+
+                loader.classList.add("hide");
+
+            }, 1200);
+
+        });
+
+
+        /* NAVBAR */
+
+        const navbar =
+            document.getElementById("navbar");
+
+        window.addEventListener("scroll", function() {
+
+            if(window.scrollY > 70) {
+
+                navbar.classList.add("scrolled");
+
+            } else {
+
+                navbar.classList.remove("scrolled");
+
+            }
+
+        });
+
+
+        /* MOBILE MENU */
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        menuBtn.addEventListener("click", function() {
+
+            navLinks.classList.toggle("active");
+
+        });
+
+
+        document.querySelectorAll(".nav-links a")
+        .forEach(function(link) {
+
+            link.addEventListener("click", function() {
+
+                navLinks.classList.remove("active");
+
+            });
+
+        });
+
+
+        /* SCROLL REVEAL */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        const revealObserver =
+            new IntersectionObserver(function(entries) {
+
+                entries.forEach(function(entry) {
+
+                    if(entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            }, {
+
+                threshold: .12
+
+            });
+
+
+        revealElements.forEach(function(element) {
+
+            revealObserver.observe(element);
+
+        });
+
+
+        /* COUNTERS */
+
+        const counters =
+            document.querySelectorAll(".counter");
+
+        let countersStarted = false;
+
+
+        function startCounters() {
+
+            if(countersStarted) return;
+
+            countersStarted = true;
+
+
+            counters.forEach(function(counter) {
+
+                const target =
+                    Number(counter.dataset.target);
+
+                let current = 0;
+
+                const duration = 1800;
+
+                const start =
+                    performance.now();
+
+
+                function update(time) {
+
+                    const progress =
+                        Math.min(
+                            (time - start) / duration,
+                            1
+                        );
+
+
+                    const ease =
+                        1 -
+                        Math.pow(
+                            1 - progress,
+                            3
+                        );
+
+
+                    current =
+                        Math.floor(
+                            target * ease
+                        );
+
+
+                    counter.textContent =
+                        current.toLocaleString("en-US");
+
+
+                    if(progress < 1) {
+
+                        requestAnimationFrame(update);
+
+                    } else {
+
+                        counter.textContent =
+                            target.toLocaleString("en-US");
+
+                    }
+
+                }
+
+
+                requestAnimationFrame(update);
+
+            });
+
+        }
+
+
+        const statsSection =
+            document.querySelector(".stats-section");
+
+
+        const statsObserver =
+            new IntersectionObserver(function(entries) {
+
+                if(entries[0].isIntersecting) {
+
+                    startCounters();
+
+                    statsObserver.disconnect();
+
+                }
+
+            }, {
+
+                threshold: .3
+
+            });
+
+
+        statsObserver.observe(statsSection);
+
+
+        /* BACK TO TOP */
+
+        const backTop =
+            document.getElementById("backTop");
+
+
+        window.addEventListener("scroll", function() {
+
+            if(window.scrollY > 600) {
+
+                backTop.classList.add("show");
+
+            } else {
+
+                backTop.classList.remove("show");
+
+            }
+
+        });
+
+
+        backTop.addEventListener("click", function() {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+
+        /* ACTIVE NAV */
+
+        const sections =
+            document.querySelectorAll("section[id]");
+
+        const navItems =
+            document.querySelectorAll(".nav-links a");
+
+
+        window.addEventListener("scroll", function() {
+
+            let current = "";
+
+
+            sections.forEach(function(section) {
+
+                const top =
+                    section.offsetTop - 200;
+
+                const height =
+                    section.offsetHeight;
+
+
+                if(
+                    window.scrollY >= top &&
+                    window.scrollY < top + height
+                ) {
+
+                    current =
+                        section.getAttribute("id");
+
+                }
+
+            });
+
+
+            navItems.forEach(function(link) {
+
+                link.classList.remove("active");
+
+
+                if(
+                    link.getAttribute("href") ===
+                    "#" + current
+                ) {
+
+                    link.classList.add("active");
+
+                }
+
+            });
+
+        });
+
+
+        /* CLUB HOVER */
+
+        const clubCards =
+            document.querySelectorAll(".club-card");
+
+
+        clubCards.forEach(function(card) {
+
+            card.addEventListener("mouseenter", function() {
+
+                clubCards.forEach(function(other) {
+
+                    other.classList.remove("active");
+
+                });
+
+                card.classList.add("active");
+
+            });
+
+        });
+
+
+        /* CARD TILT */
+
+        const tiltCards =
+            document.querySelectorAll(
+                ".stat-card, .trophy-card"
+            );
+
+
+        tiltCards.forEach(function(card) {
+
+            card.addEventListener("mousemove", function(e) {
+
+                if(window.innerWidth < 800) return;
+
+
+                const rect =
+                    card.getBoundingClientRect();
+
+
+                const x =
+                    e.clientX - rect.left;
+
+
+                const y =
+                    e.clientY - rect.top;
+
+
+                const centerX =
+                    rect.width / 2;
+
+
+                const centerY =
+                    rect.height / 2;
+
+
+                const rotateX =
+                    ((y - centerY) / centerY) * -4;
+
+
+                const rotateY =
+                    ((x - centerX) / centerX) * 4;
+
+
+                card.style.transform =
+                    `
+                    perspective(700px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateY(-5px)
+                    `;
+
+            });
+
+
+            card.addEventListener("mouseleave", function() {
+
+                card.style.transform = "";
+
+            });
+
+        });
+
+
+        /* HERO NUMBER EFFECT */
+
+        const heroNumber =
+            document.querySelector(".hero-number");
+
+
+        document.addEventListener("mousemove", function(e) {
+
+            if(
+                !heroNumber ||
+                window.innerWidth < 800
+            ) return;
+
+
+            const x =
+                (window.innerWidth / 2 - e.clientX) / 100;
+
+
+            const y =
+                (window.innerHeight / 2 - e.clientY) / 100;
+
+
+            heroNumber.style.transform =
+                `translate(${x}px, ${y}px)`;
+
+        });
+
+
+        /* ESCAPE */
+
+        document.addEventListener("keydown", function(e) {
+
+            if(e.key === "Escape") {
+
+                navLinks.classList.remove("active");
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
